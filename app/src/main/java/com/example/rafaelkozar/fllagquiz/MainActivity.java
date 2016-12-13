@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //receptor para alatereações feitas em SharedPreferences do app
-    private OnSharedPreferenceChangeListener preferenceChangeListener =
+    private OnSharedPreferenceChangeListener preferencesChangedListener =
             new OnSharedPreferenceChangeListener() {
                 @Override
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                             regions.add(getString(R.string.default_region));
                             editor.putStringSet(REGIONS, regions);
                             editor.apply();
+
 
                             Toast.makeText(MainActivity.this,
                                     R.string.default_region_message,
