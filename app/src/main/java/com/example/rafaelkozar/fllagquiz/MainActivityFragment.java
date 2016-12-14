@@ -14,6 +14,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -50,7 +51,7 @@ public class MainActivityFragment extends Fragment {
     private String correctAnswer;
     private int totalGuesses;
     private int correctAnswers;
-    private int guessRow;
+    private int guessRows;
     private SecureRandom random;;
     private Handler handler;
     private Animation shakeAnimation;
@@ -109,6 +110,7 @@ public class MainActivityFragment extends Fragment {
     };
 
     public void updateRegions(SharedPreferences defaultSharedPreferences) {
+        regionsSet = defaultSharedPreferences.getStringSet(MainActivity.REGIONS, null);
     };
 
     public void resetQuiz() {
@@ -148,6 +150,7 @@ public class MainActivityFragment extends Fragment {
         loadNextFlag();
     }
 
+
     private void loadNextFlag() {
         String nextImage = quizCountriesList.remove(0);
         correctAnswer = nextImage;
@@ -160,7 +163,8 @@ public class MainActivityFragment extends Fragment {
         String region = nextImage.substring(0, nextImage.indexOf('-'));
         AssetManager assets = getActivity().getAssets();
 
-        try(InputStream stream = assets.open(region + "/" + nextImage + ".png")){
+        try{
+            InputStream stream = assets.open(region + "/" + nextImage + ".png");
             Drawable flag = Drawable.createFromStream(stream, nextImage);
             flagImageView.setImageDrawable(flag);
 
@@ -180,7 +184,6 @@ public class MainActivityFragment extends Fragment {
                 Button newGuessButton =
                         (Button) guessLinearLayouts[row].getChildAt(column);
                 newGuessButton.setEnabled(true);
-
                 String filename = fileNameList.get((row * 2) + column);
                 newGuessButton.setText(getCountryName(filename));
             }
@@ -197,6 +200,7 @@ public class MainActivityFragment extends Fragment {
         return name.substring(name.indexOf('-')+1).replace('_', ' ');
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void animate(boolean animateOut){
         if(correctAnswers == 0){
             return;
@@ -292,9 +296,10 @@ public class MainActivityFragment extends Fragment {
                 flagImageView.startAnimation(shakeAnimation);
 
                 answerTextView.setText(R.string.incorrect_answer);
-                answerTextView.setTextColor(getResources().getColor(
+                answerTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.incorrect_answer));
+                /*answerTextView.setTextColor(getResources().getColor(
                         R.color.incorrect_answer, getContext().getTheme()
-                ));
+                ));*/
                 guessButton.setEnabled(false);
             }
         };
