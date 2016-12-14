@@ -50,7 +50,7 @@ public class MainActivityFragment extends Fragment {
     private String correctAnswer;
     private int totalGuesses;
     private int correctAnswers;
-    private int guessRows;
+    private int guessRow;
     private SecureRandom random;;
     private Handler handler;
     private Animation shakeAnimation;
@@ -104,12 +104,12 @@ public class MainActivityFragment extends Fragment {
 
     public void updateGuessRows(SharedPreferences sharedPreferences) {
         String choices =
-                sharedPreferences.getString(MainActivity.CHOICES, null;
+                sharedPreferences.getString(MainActivity.CHOICES, null);
         guessRows = Integer.parseInt(choices)/2;
-    }
+    };
 
     public void updateRegions(SharedPreferences defaultSharedPreferences) {
-    }
+    };
 
     public void resetQuiz() {
         AssetManager assets = getActivity().getAssets();
@@ -247,7 +247,7 @@ public class MainActivityFragment extends Fragment {
             String answer = getCountryName(correctAnswer);
             ++totalGuesses;
 
-            if(guess.equals(answer)){
+            if (guess.equals(answer)) {
                 ++correctAnswers;
                 answerTextView.setText(answer + "!");
                 answerTextView.setTextColor(
@@ -255,9 +255,9 @@ public class MainActivityFragment extends Fragment {
                                 getContext().getTheme()));
 
                 disableButtons();
-                if(correctAnswers == FLAGS_IN_QUIZ){
+                if (correctAnswers == FLAGS_IN_QUIZ) {
                     DialogFragment quizResults =
-                            new DialogFragment(){
+                            new DialogFragment() {
                                 @NonNull
                                 @Override
                                 public Dialog onCreateDialog(Bundle bundle) {
@@ -279,7 +279,7 @@ public class MainActivityFragment extends Fragment {
                     quizResults.setCancelable(false);
                     quizResults.show(getFragmentManager(), "quiz results");
 
-                }else{
+                } else {
                     handler.postDelayed(
                             new Runnable() {
                                 @Override
@@ -287,16 +287,24 @@ public class MainActivityFragment extends Fragment {
                                     animate(true);
                                 }
                             }, 2000);
-                }else{
-                    flagImageView.startAnimation(shakeAnimation);
-
-                    answerTextView.setText(R.string.incorrect_answer);
-                    answerTextView.setTextColor(getResources().getColor(
-                            R.color.incorrect_answer, getContext().getTheme()
-                    ));
-                    guessButton.setEnabled(false);
                 }
+            } else {
+                flagImageView.startAnimation(shakeAnimation);
+
+                answerTextView.setText(R.string.incorrect_answer);
+                answerTextView.setTextColor(getResources().getColor(
+                        R.color.incorrect_answer, getContext().getTheme()
+                ));
+                guessButton.setEnabled(false);
             }
+        };
+    };
+
+    private  void disableButtons(){
+        for(int row = 0; row < guessRows; row++){
+            LinearLayout guessRow = guessLinearLayouts[row];
+            for(int i = 0; i < guessRow.getChildCount(); i++)
+                guessRow.getChildAt(i).setEnabled(false);
         }
     }
 }
