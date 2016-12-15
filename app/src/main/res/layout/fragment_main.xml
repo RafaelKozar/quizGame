@@ -54,8 +54,9 @@
             android:id="@+id/button"
             android:layout_weight="1"
             android:lines="2"
-            style="@android:style/Widget.Material.Button.Colored"
-            android:textColor="@color/button_text_color"/>
+            android:background="@drawable/button_guess_style"
+            android:textColor="@color/button_text_color"
+            android:layout_margin="10dp" />
 
         <Button
             android:layout_width="0dp"
@@ -64,8 +65,10 @@
             android:id="@+id/button2"
             android:layout_weight="1"
             android:lines="2"
-            style="@android:style/Widget.Material.Button.Colored"
-            android:textColor="@color/button_text_color"/>
+
+            android:textColor="@color/button_text_color"
+            android:background="@drawable/button_guess_style"
+            android:layout_margin="10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -81,8 +84,10 @@
             android:id="@+id/button3"
             android:layout_weight="1"
             android:lines="2"
-            style="@android:style/Widget.Material.Button.Colored"
-            android:textColor="@color/button_text_color"/>
+
+            android:textColor="@color/button_text_color"
+            android:background="@drawable/button_guess_style"
+            android:layout_margin="10dp" />
 
         <Button
             android:layout_width="0dp"
@@ -91,8 +96,10 @@
             android:id="@+id/button4"
             android:layout_weight="1"
             android:lines="2"
-            style="@android:style/Widget.Material.Button.Colored"
-            android:textColor="@color/button_text_color"/>
+
+            android:textColor="@color/button_text_color"
+            android:background="@drawable/button_guess_style"
+            android:layout_margin="10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -108,8 +115,10 @@
             android:id="@+id/button5"
             android:layout_weight="1"
             android:lines="2"
-            style="@android:style/Widget.Material.Button.Colored"
-            android:textColor="@color/button_text_color"/>
+
+            android:textColor="@color/button_text_color"
+            android:background="@drawable/button_guess_style"
+            android:layout_margin="10dp" />
 
         <Button
             android:layout_width="0dp"
@@ -118,8 +127,10 @@
             android:id="@+id/button6"
             android:layout_weight="1"
             android:lines="2"
-            style="@android:style/Widget.Material.Button.Colored"
-            android:textColor="@color/button_text_color"/>
+
+            android:textColor="@color/button_text_color"
+            android:background="@drawable/button_guess_style"
+            android:layout_margin="10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -135,8 +146,10 @@
             android:id="@+id/button7"
             android:layout_weight="1"
             android:lines="2"
-            style="@android:style/Widget.Material.Button.Colored"
-            android:textColor="@color/button_text_color"/>
+
+            android:textColor="@color/button_text_color"
+            android:background="@drawable/button_guess_style"
+            android:layout_margin="10dp" />
 
         <Button
             android:layout_width="0dp"
@@ -145,15 +158,16 @@
             android:id="@+id/button8"
             android:layout_weight="1"
             android:lines="2"
-            style="@android:style/Widget.Material.Button.Colored"
-            android:textColor="@color/button_text_color"/>
+
+            android:textColor="@color/button_text_color"
+            android:background="@drawable/button_guess_style"
+            android:layout_margin="10dp" />
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
         android:id="@+id/answerTextView"
         android:layout_gravity="bottom|center_horizontal"
         android:gravity="center_horizontal"
